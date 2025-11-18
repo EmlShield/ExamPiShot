@@ -1,0 +1,6 @@
+@ExamPiShotRest_HostAddress = http://localhost:5166
+
+GET {{ExamPiShotRest_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
