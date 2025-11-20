@@ -20,7 +20,7 @@ jobs:
         dotnet-version: '9.0.x'
 
     - name: Build API
-      working-directory: ./api
+      working-directory: api
       run: dotnet publish -c Release -o published
 
     - name: Azure Login
