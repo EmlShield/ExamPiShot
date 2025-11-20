@@ -1,0 +1,35 @@
+name: Deploy API
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - 'api/**'
+
+jobs:
+  deploy:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '9.0.x'
+
+    - name: Build API
+      working-directory: ./api
+      run: dotnet publish -c Release -o published
+
+    - name: Azure Login
+      uses: azure/login@v2
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Deploy to Azure Web App
+      uses: azure/webapps-deploy@v3
+      with:
+        app-name: pishotapi
+        package: ./api/published
