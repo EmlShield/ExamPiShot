@@ -5,8 +5,20 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
+const string AllowAllPolicy = "AllowAll";
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: AllowAllPolicy,
+                             policy =>
+                             {
+                                 policy.AllowAnyOrigin()
+                                 .AllowAnyMethod()
+                                 .AllowAnyHeader();
+                             });
+});
 
 var app = builder.Build();
+app.UseCors(AllowAllPolicy);
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
