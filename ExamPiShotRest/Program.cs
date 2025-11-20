@@ -21,10 +21,8 @@ var app = builder.Build();
 app.UseCors(AllowAllPolicy);
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.MapOpenApi();
-}
+app.MapOpenApi();
+
 
 app.UseAuthorization();
 
