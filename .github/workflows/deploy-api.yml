@@ -8,7 +8,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout repo
@@ -20,7 +20,7 @@ jobs:
         dotnet-version: '9.0.x'
 
     - name: Build API
-      working-directory: ./api
+      working-directory: api
       run: dotnet publish -c Release -o published
 
     - name: Azure Login
@@ -32,4 +32,4 @@ jobs:
       uses: azure/webapps-deploy@v3
       with:
         app-name: pishotapi
-        package: ./api/published
+        package: ./ExamPiShotRest

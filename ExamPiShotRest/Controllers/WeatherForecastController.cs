@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ExamPiShotRest.Controllers
@@ -19,6 +20,7 @@ namespace ExamPiShotRest.Controllers
         }
 
         [HttpGet(Name = "GetWeatherForecast")]
+        [EnableCors("AllowAll")]
         public IEnumerable<WeatherForecast> Get()
         {
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
