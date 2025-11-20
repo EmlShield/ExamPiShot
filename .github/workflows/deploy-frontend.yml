@@ -4,11 +4,11 @@ on:
   push:
     branches: [ "main" ]
     paths:
-      - 'frontend/**'
+      - 'ExamPiShotBrowser/**'
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
     - name: Checkout repo
@@ -20,11 +20,11 @@ jobs:
         node-version: '20'
 
     - name: Install dependencies
-      working-directory: ./frontend
+      working-directory: ./ExamPiShotBrowser
       run: npm install
 
     - name: Build frontend
-      working-directory: ./frontend
+      working-directory: ./ExamPiShotBrowser
       run: npm run build
 
     - name: Azure Login
@@ -36,4 +36,4 @@ jobs:
       uses: azure/webapps-deploy@v3
       with:
         app-name: pishot
-        package: ./frontend/build
+        package: ./ExamPiShotBrowser/build
