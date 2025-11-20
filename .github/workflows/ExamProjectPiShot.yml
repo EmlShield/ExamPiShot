@@ -11,7 +11,7 @@ env:
   AZURE_APIM_SERVICENAME: ExamProjectApi
   AZURE_APIM_API_ID: ExamPiShotApi
   AZURE_APIM_APPSERVICEURL: https://examprojectpishot-f3gtgrakffckh3dt.germanywestcentral-01.azurewebsites.net
-  API_IMPORT_SPECIFICATION_PATH: ExamPiShotRest\publish\swagger.json
+  API_IMPORT_SPECIFICATION_PATH: ExamPiShotRest\publish\openapi\v1.json
   # API_IMPORT_DLL: ExamPiShotRest\bin\Release\net9.0\ExamPiShotRest.dll
   # API_IMPORT_VERSION: v1
   CONFIGURATION: Release
