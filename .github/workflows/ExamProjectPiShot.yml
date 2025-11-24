@@ -35,12 +35,12 @@ jobs:
     - name: Add Microsoft.Extensions.ApiDescription.Server (9.x)
       run: dotnet add ${{ env.WORKING_DIRECTORY }}/${{ env.WORKING_DIRECTORY }}.csproj package Microsoft.Extensions.ApiDescription.Server --version 9.0.10
     - name: Publish
-      run: dotnet publish ${{ env.WORKING_DIRECTORY }} --configuration ${{ env.CONFIGURATION }} --no-build --output ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
-    - name: Copy OpenAPI file to expected swagger.json location
-      shell: pwsh
-      run: |
-        New-Item -ItemType Directory -Path ExamPiShotRest\publish -Force | Out-Null
-        Copy-Item -Path "ExamPiShotRest\publish\openapi\v1.json" -Destination "${{ env.API_IMPORT_SPECIFICATION_PATH }}" -Force
+      run: dotnet publish ${{ env.WORKING_DIRECTORY }} --configuration ${{ env.CONFIGURATION }} --output ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+    #- name: Copy OpenAPI file to expected swagger.json location
+      #shell: pwsh
+      #run: |
+        #New-Item -ItemType Directory -Path ExamPiShotRest\publish -Force | Out-Null
+        #Copy-Item -Path "ExamPiShotRest\publish\openapi\v1.json" -Destination "${{ env.API_IMPORT_SPECIFICATION_PATH }}" -Force
     - name: Publish Artifacts
       uses: actions/upload-artifact@v4
       with:
