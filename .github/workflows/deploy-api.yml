@@ -30,6 +30,12 @@ jobs:
       run: copy path\to\generated\swagger.json ExamPiShotRest\publish\openapi\v1.json
       shell: cmd
 
+    - name: Ensure OpenAPI file exists
+      shell: pwsh
+      run: |
+        New-Item -ItemType Directory -Path ExamPiShotRest\publish\openapi -Force | Out-Null
+        Copy-Item -Path "ExamPiShotRest\openapi\v1.json" -Destination "ExamPiShotRest\publish\openapi\v1.json" -Force
+
     - name: Build API
       working-directory: api
       run: dotnet publish -c Release -o published
