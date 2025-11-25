@@ -20,6 +20,16 @@ jobs:
       with:
         dotnet-version: '9.0.x'
 
+    - name: Generate OpenAPI spec
+      run: dotnet tool run swagger tofile --output ExamPiShotRest\publish\openapi\v1.json ExamPiShotRest\bin\Release\net9.0\ExamPiShotRest.dll v1
+    
+    - name: Ensure OpenAPI directory exists
+      run: mkdir ExamPiShotRest\publish\openapi
+    
+    - name: Copy OpenAPI file to expected location
+      run: copy path\to\generated\swagger.json ExamPiShotRest\publish\openapi\v1.json
+      shell: cmd
+
     - name: Build API
       working-directory: api
       run: dotnet publish -c Release -o published
